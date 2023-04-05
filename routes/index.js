@@ -3,6 +3,7 @@ import { Express } from 'express';
 import AppController from '../controllers/AppController';
 import UsersController from '../controllers/UsersController';
 import AuthController from '../controllers/AuthController';
+import FilesController from '../controllers/FilesController';
 import { basicAuthenticate, xTokenAuthenticate } from '../middlewares/auth';
 /**
  * Injects routes with their handlers to the given Express application.
@@ -16,6 +17,8 @@ const injectRoutes = (api) => {
   api.get('/users/me', xTokenAuthenticate, UsersController.getMe);
   api.get('/disconnect', xTokenAuthenticate, AuthController.getDisconnect);
   api.post('/files', xTokenAuthenticate, FilesController.postUpload);
+  api.get('/files/:id', xTokenAuthenticate, FilesController.getShow);
+  api.get('/files', xTokenAuthenticate, FilesController.getIndex);
 };
 
 export default injectRoutes;
