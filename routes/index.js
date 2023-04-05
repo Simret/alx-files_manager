@@ -15,6 +15,7 @@ const injectRoutes = (api) => {
   api.get('/connect', basicAuthenticate, AuthController.getConnect);
   api.get('/users/me', xTokenAuthenticate, UsersController.getMe);
   api.get('/disconnect', xTokenAuthenticate, AuthController.getDisconnect);
+  api.post('/files', xTokenAuthenticate, FilesController.postUpload);
 };
 
 export default injectRoutes;
